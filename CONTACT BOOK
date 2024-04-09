@@ -42,7 +42,7 @@ def search_contact(query):
       print("E_Mail : ", contact['E_Mail'])
       print("Address : ", contact['Address'])
       print("______________________________")
-    else:
+    if query not in contact['Name'] or query in contact['Mobile']:  
       print("Contact is not in the Contact book")
 
 def remove_contact(name):
