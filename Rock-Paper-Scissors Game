@@ -1,0 +1,61 @@
+tasks = []
+
+def new_task(task_description):
+  tasks.append({"Description": task_description, "Completed": False})
+  print("New task is added to the list successfully.")
+
+def show_all_tasks():
+  if tasks:
+    print("List of tasks:")
+    index = 1
+    for task in tasks :
+      status = "Completed" if task["Completed"] else "Pending"
+      print(f"{index}. {task['Description']} - [{status}]")
+  else:
+    print("Tasks list is empty.")
+
+def mark_completed_tasks(task_index):
+  if 1 <= task_index <= len(tasks):
+    tasks[task_index - 1]["Completed"] = True
+    print("Task is marked as completed.")
+  else:
+    print("Invalid task index.")
+
+def remove_task(task_index):
+  if 1 <= task_index <= len(tasks):
+    del tasks[task_index - 1]
+    print("Task is removed from the list successfully")
+  else :
+    print("Invalid task index")
+
+def menu():
+  print("To-Do List application")
+  while True:
+    print("\nMENU :")
+    print("1.Add new task")
+    print("2.Show all tasks")
+    print("3.Mark completed tasks")
+    print("4.Remove task")
+    print("5.Exit")
+
+    choice = input("Enter your choice from 1 to 5 : ")
+
+    if choice == '1':
+      task_description = input("Enter the task description to add in the list : ")
+      new_task(task_description)
+    elif choice == '2':
+      show_all_tasks()
+    elif choice == '3':
+      task_index = int(input("Enter the task number to mark it as completed : "))
+      mark_completed_tasks(task_index)
+    elif choice == '4':
+      task_index = int(input("Enter the task number to remove it from the list : "))
+      remove_task(task_index)
+    elif choice == '5':
+      print("Exiting")
+      break
+    else:
+      print("Invalid Choice.Enter a valid choice from 1 to 5")
+
+if __name__ == "__main__":
+  menu()
